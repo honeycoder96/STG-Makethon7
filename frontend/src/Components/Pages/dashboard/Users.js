@@ -3,14 +3,17 @@ import EmailEditor from 'react-email-editor';
 //material ui component
 import sample from "../../../util/sample.json";
 import initial from "./../../../util/initial.json";
+import axios from "axios";
 
 class Users extends Component {
-	constructor() {
-		super();
+	constructor(props) {
+		super(props);
 		this.state = {
 			name: "React",
-			start: ""
+			start: "",
+			int: initial
 		};
+		this.loadInitial = this.loadInitial.bind(this);
 	}
 
 	render() {
@@ -25,7 +28,7 @@ class Users extends Component {
 						&nbsp;
             <button onClick={this.loadInitial}>Load Initial Design</button>
 						&nbsp;
-            <button onClick={this.load}>Load Design</button>
+            <button onClick={() => this.load()}>Load Design</button>
 						&nbsp;
             <button onClick={this.save}>Save</button>
 						&nbsp;
@@ -37,8 +40,22 @@ class Users extends Component {
 	}
 
 
+	fetch = () => {
+
+	}
+
 	loadInitial = () => {
-		this.editor.loadDesign(initial);
+		this.editor.loadDesign(this.state.int);
+		// var self = this;
+		// axios
+		// 	.get("http://localhost:4000/api/templates/")
+		// 	.then(function (response) {
+		// 		console.log(response.data[1].json);
+		// 		self.editor.loadDesign(response.data[0].json);
+		// 	})
+		// 	.catch(function (error) {
+		// 		console.log(error);
+		// 	});
 	};
 
 	load = () => {

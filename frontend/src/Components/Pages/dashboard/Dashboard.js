@@ -19,6 +19,7 @@ import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import ListSubheader from '@material-ui/core/ListSubheader';
 import DashboardIcon from '@material-ui/icons/Dashboard';
+import ImageIcon from '@material-ui/icons/Image';
 import PeopleIcon from '@material-ui/icons/People';
 import BarChartIcon from '@material-ui/icons/BarChart';
 import LayersIcon from '@material-ui/icons/Layers';
@@ -241,6 +242,24 @@ export default function Dashboard() {
 						</ListItemIcon>
 						<ListItemText primary='Dashboard' />
 					</ListItem> */}
+					<ListItem button onClick={() => changeComponent(3)}>
+						<ListItemIcon>
+							<LayersIcon />
+						</ListItemIcon>
+						<ListItemText primary='Mailing List' />
+					</ListItem>
+					<ListItem button onClick={() => changeComponent(4)}>
+						<ListItemIcon>
+							<PeopleIcon />
+						</ListItemIcon>
+						<ListItemText primary='Campaigns' />
+					</ListItem>
+					<ListItem button onClick={() => changeComponent(5)}>
+						<ListItemIcon>
+							<ImageIcon/>
+						</ListItemIcon>
+						<ListItemText primary='Templates' />
+					</ListItem>
 					<ListItem button onClick={() => changeComponent(1)}>
 						<ListItemIcon>
 							<AddPhotoAlternateIcon />
@@ -248,31 +267,14 @@ export default function Dashboard() {
 						</ListItemIcon>
 						<ListItemText primary='Add Template' />
 					</ListItem>
+
 					{/* <ListItem button onClick={() => changeComponent(2)}>
 						<ListItemIcon>
 							<BarChartIcon />
 						</ListItemIcon>
 						<ListItemText primary='Dashboard' />
 					</ListItem> */}
-					<ListItem button onClick={() => changeComponent(3)}>
-						<ListItemIcon>
-							<LayersIcon />
-						</ListItemIcon>
-						<ListItemText primary='Team' />
-					</ListItem>
-					<ListItem button onClick={() => changeComponent(4)}>
-						<ListItemIcon>
-							<ContactSupportIcon />
-						</ListItemIcon>
-						<ListItemText primary='Contacts' />
-					</ListItem>
 
-					<ListItem button onClick={() => changeComponent(5)}>
-						<ListItemIcon>
-							<PeopleIcon />
-						</ListItemIcon>
-						<ListItemText primary='Profile' />
-					</ListItem>
 
 				</div>
 				<Divider />
