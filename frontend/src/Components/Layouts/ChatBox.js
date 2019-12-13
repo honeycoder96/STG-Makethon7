@@ -13,9 +13,11 @@ import Typography from '@material-ui/core/Typography';
 import CloseIcon from '@material-ui/icons/Close';
 import Slide from '@material-ui/core/Slide';
 import ChatIcon from '@material-ui/icons/Chat';
+import EditIcon from '@material-ui/icons/Edit';
 import Avatar from '@material-ui/core/Avatar';
 import Grid from '@material-ui/core/Grid';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
+import EditTemplete from './../../Components/Pages/dashboard/Users'
 
 const useStyles = makeStyles(theme => ({
 	avatar: {
@@ -50,7 +52,7 @@ export default function ChatBox(props) {
 
 	return (
 		<React.Fragment>
-			<ChatIcon onClick={handleClickOpen} />
+			<EditIcon onClick={handleClickOpen} />
 			<Dialog
 				fullScreen
 				open={open}
@@ -68,15 +70,15 @@ export default function ChatBox(props) {
 							<CloseIcon />
 						</IconButton>
 						<Grid container justify='center' alignItems='center'>
-							<Avatar className={classes.avatar}>{props.user.Name[0]}</Avatar>
+							<Avatar className={classes.avatar}>{props.title}</Avatar>
 							<Typography variant='h6' className={classes.title}>
-								{props.user.Name}
+								{props.title}
 							</Typography>
 						</Grid>
 						<MoreVertIcon />
 					</Toolbar>
 				</AppBar>
-				<List>
+				{/* <List>
 					<ListItem button>
 						<ListItemText primary='Phone ringtone' secondary='Titania' />
 					</ListItem>
@@ -87,7 +89,8 @@ export default function ChatBox(props) {
 							secondary='Tethys'
 						/>
 					</ListItem>
-				</List>
+				</List> */}
+				<EditTemplete />
 			</Dialog>
 		</React.Fragment>
 	);

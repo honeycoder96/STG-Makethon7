@@ -10,57 +10,80 @@ import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
 import { FormGroup, Button, Container } from '@material-ui/core';
 import AuthContext from './../../../context/auth/authContext';
+import DeleteIcon from '@material-ui/icons/Delete';
+import EditIcon from '@material-ui/icons/Edit';
 import axios from 'axios'
+import ChatBox from './../../Layouts/ChatBox'
 
 const Profile = () => {
 	const authContext = useContext(AuthContext);
 	const { user } = authContext;
 
+	const colorArr = ["card bg-primary", "card bg-success", "card bg-danger", "card bg-info"];
 	const [templates, updateTemplates] = useState([]);
+	const [loader, changeLoader] = useState(0);
+	const [editData, setEditData] = useState(null);
 
 	useEffect(() => {
+		// setEditData(null);
+	});
+
+	var loadTemplates = () => {
 		axios
 			.get("http://localhost:4000/api/templates/")
 			.then(function (response) {
-				console.log(response.data[1].json);
+				// console.log(response.data[0].json);
 				updateTemplates(response.data);
 			})
 			.catch(function (error) {
 				console.log(error);
 			});
-	});
+	}
 
+	var deleteTemplate = (id) => {
+		console.log("deleting:", id)
+		changeLoader(1);
+		axios
+			.delete("http://localhost:4000/api/templates/delete/" + id)
+			.then(function (response) {
+				loadTemplates()
+				changeLoader(0)
+			})
+			.catch(function (error) {
+				console.log(error);
+			});
+	}
 
+	var loadEditSheet = (templ) => {
+		setEditData(templ)
+	}
 	return (
 		<Container>
 			<h5>Your Templates</h5>
+			{/* {editData && <ChatBox user={editData} />} */}
 			{console.log("here")}
-			<div class="card-deck">
+			<span class="card-deck">
+				{templates.length < 1 && loadTemplates()}
 				{
 					templates.length > 0 && templates.map(temp => (
+						<div style={{ padding: "5px" }} class="col-md-4">
+							<span class={colorArr[Math.floor(Math.random() * (+colorArr.length - +0)) + +0]}>
+								<div class="card-header text-center">
+									<p class="card-text">{temp.title}</p>
+								</div>
+								<div class="card-footer text-right">
+									<Button component={Link} >
+										<ChatBox user={temp} />
+									</Button>
+									<Button onClick={() => deleteTemplate(temp.uid)} >
+										<DeleteIcon />{loader > 0 && "wait..."}
+									</Button>
 
-						<div class="card bg-primary">
-							<div class="card-body text-center">
-								<p class="card-text">{temp.title}</p>
-							</div>
+								</div>
+							</span>
 						</div>))
 				}
-				{/* <div class="card bg-info">
-					<div class="card-body text-center">
-						<p class="card-text">Content of the second card</p>
-					</div>
-				</div>
-				<div class="card bg-success">
-					<div class="card-body text-center">
-						<p class="card-text">Content of the third card</p>
-					</div>
-				</div>
-				<div class="card bg-warning">
-					<div class="card-body text-center">
-						<p class="card-text">Content of the fourth card</p>
-					</div>
-				</div> */}
-			</div>
+			</span>
 		</Container>
 	);
 };
