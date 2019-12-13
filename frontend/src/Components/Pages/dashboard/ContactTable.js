@@ -21,6 +21,9 @@ import DeleteIcon from '@material-ui/icons/Delete';
 import FilterListIcon from '@material-ui/icons/FilterList';
 import RefreshIcon from '@material-ui/icons/Refresh';
 import AuthContext from '../../../context/auth/authContext';
+import Landing from '../../../images/landing.jpg';
+import Card1 from '../../../images/card1.jpg';
+import Card2 from '../../../images/card2.png';
 
 function createData(cid, name, calories, fat, carbs, protein) {
 	return { cid, name, calories, fat, carbs, protein };
@@ -318,7 +321,7 @@ export default function ContactTable() {
 	};
 	return (
 		<div className={classes.root}>
-			{contact.length > 0 && setContact()}
+			{/* {contact.length > 0 && setContact()}
 			<Paper className={classes.paper}>
 				<EnhancedTableToolbar numSelected={selected.length} />
 				<div className={classes.tableWrapper}>
@@ -401,7 +404,25 @@ export default function ContactTable() {
 			<FormControlLabel
 				control={<Switch checked={dense} onChange={handleChangeDense} />}
 				label='Dense padding'
-			/>
+			/> */}
+			
+		 <div class="column1">
+		 <div class="card">
+			<div class="card-header">
+   				 Campaign Header
+  			</div>
+  			<div class="card-body">
+    		<h5 class="card-title">Campaign Details</h5>
+    		<p class="card-text">Features cards</p>
+    		<a class="et_pb_button btn btn-primary" title="Relevant Title" href="#">Create </a>
+			<a class="et_pb_button btn btn-primary" title="Relevant Title" href="#">Edit</a>
+			<a class="et_pb_button btn btn-primary" title="Relevant Title" href="#">Info</a>
+ 			 </div>
+			</div>
+			</div> 
+
+		
+			
 		</div>
 	);
 }
