@@ -84,7 +84,7 @@ const Event = () => {
 										color: '#fafafa'
 									}}
 								>
-									Total Events
+									Total Templates
 								</Typography>
 								<Divider></Divider>
 							</CardContent>
@@ -115,7 +115,7 @@ const Event = () => {
 										color: '#fafafa'
 									}}
 								>
-									Total Workshops
+									Total Users
 								</Typography>
 								<Divider></Divider>
 							</CardContent>
@@ -146,7 +146,7 @@ const Event = () => {
 										color: '#fafafa'
 									}}
 								>
-									Total Attendies
+									Total Audience Reached
 								</Typography>
 								<Divider></Divider>
 							</CardContent>
@@ -178,7 +178,7 @@ const Event = () => {
 					justify='center'
 					alignItems='center'
 				></Grid>
-				<ExpansionPanel className='card--shadow'>
+				{/* <ExpansionPanel className='card--shadow'>
 					<ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
 						<Typography
 							style={{
@@ -344,13 +344,13 @@ const Event = () => {
 							</form>
 						</div>
 
-						{/* <Grid item md={6} xl={6}>
+						<Grid item md={6} xl={6}>
 							<Typography className='grid_item_typo'></Typography>
-						</Grid> */}
+						</Grid>
 					</ExpansionPanelDetails>
-				</ExpansionPanel>
-			</div>
-		</section>
+									</ExpansionPanel> */ }
+			</div >
+		</section >
 	);
 };
 

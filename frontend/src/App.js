@@ -50,7 +50,7 @@ function App() {
 							<br />
 							<br />
 							<br />
-							<Footer />
+							{/* <Footer /> */}
 						</AlertContext>
 					</EventContext>
 				</AuthContext>

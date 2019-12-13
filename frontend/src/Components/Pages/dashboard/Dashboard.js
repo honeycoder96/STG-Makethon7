@@ -26,12 +26,13 @@ import AssignmentIcon from '@material-ui/icons/Assignment';
 import ContactSupportIcon from '@material-ui/icons/ContactSupport';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
+import AddPhotoAlternateIcon from '@material-ui/icons/AddPhotoAlternate';
 import { mainListItems, secondaryListItems } from './listitems';
 import ContactTable from './ContactTable';
 import Event from './Event';
 import Main from './Main';
 import Team from './Team';
-import Users from './Users';
+import AddTemplate from './Users';
 import Profile from './Profile'
 
 function Copyright() {
@@ -137,7 +138,7 @@ const useStyles = makeStyles(theme => ({
 export default function Dashboard() {
 	const classes = useStyles();
 	const [open, setOpen] = React.useState(false);
-	const [currentComponent, setCurrentComponent] = React.useState(0);
+	const [currentComponent, setCurrentComponent] = React.useState(2);
 
 	const changeComponent = c => {
 		setCurrentComponent(c);
@@ -148,7 +149,7 @@ export default function Dashboard() {
 			case 0:
 				return <Main />;
 			case 1:
-				return <Users />;
+				return <AddTemplate />;
 			case 2:
 				return <Event />;
 			case 3:
@@ -228,24 +229,31 @@ export default function Dashboard() {
 				<Divider />
 				{/* <List>{mainListItems}</List> */}
 				<div>
-					<ListItem button onClick={() => changeComponent(0)}>
-						<ListItemIcon>
-							<DashboardIcon />
-						</ListItemIcon>
-						<ListItemText primary='Dashboard' />
-					</ListItem>
-					<ListItem button onClick={() => changeComponent(1)}>
-						<ListItemIcon>
-							<PeopleIcon />
-						</ListItemIcon>
-						<ListItemText primary='Users' />
-					</ListItem>
 					<ListItem button onClick={() => changeComponent(2)}>
 						<ListItemIcon>
 							<BarChartIcon />
 						</ListItemIcon>
-						<ListItemText primary='Events' />
+						<ListItemText primary='Dashboard' />
 					</ListItem>
+					{/* <ListItem button onClick={() => changeComponent(0)}>
+						<ListItemIcon>
+							<DashboardIcon />
+						</ListItemIcon>
+						<ListItemText primary='Dashboard' />
+					</ListItem> */}
+					<ListItem button onClick={() => changeComponent(1)}>
+						<ListItemIcon>
+							<AddPhotoAlternateIcon />
+							{/* <PeopleIcon /> */}
+						</ListItemIcon>
+						<ListItemText primary='Add Template' />
+					</ListItem>
+					{/* <ListItem button onClick={() => changeComponent(2)}>
+						<ListItemIcon>
+							<BarChartIcon />
+						</ListItemIcon>
+						<ListItemText primary='Dashboard' />
+					</ListItem> */}
 					<ListItem button onClick={() => changeComponent(3)}>
 						<ListItemIcon>
 							<LayersIcon />
