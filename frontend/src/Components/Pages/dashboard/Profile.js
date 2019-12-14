@@ -13,6 +13,7 @@ import AuthContext from './../../../context/auth/authContext';
 import DeleteIcon from '@material-ui/icons/Delete';
 import EditIcon from '@material-ui/icons/Edit';
 import axios from 'axios'
+import AddIcon from '@material-ui/icons/Add';
 import ChatBox from './../../Layouts/ChatBox'
 
 const Profile = () => {
@@ -59,9 +60,10 @@ const Profile = () => {
 	}
 	return (
 		<Container>
-			<h5>Your Templates</h5>
-			{/* {editData && <ChatBox user={editData} />} */}
-			{console.log("here")}
+			<div>
+				<div class="col-md-3"><h5>Your Templates</h5></div>
+				<div style={{ backgroundColor: "green", content: "center" }} class="col-md-1 offset-5"><Button><AddIcon /></Button></div>
+			</div>
 			<span class="card-deck">
 				{templates.length < 1 && loadTemplates()}
 				{

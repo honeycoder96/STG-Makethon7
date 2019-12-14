@@ -4,6 +4,7 @@ import EmailEditor from 'react-email-editor';
 import sample from "../../../util/sample.json";
 import initial from "./../../../util/initial.json";
 import axios from "axios";
+import base64 from 'base-64';
 
 class Users extends Component {
 	constructor(props) {
@@ -19,7 +20,6 @@ class Users extends Component {
 	render() {
 		return (
 			<div>
-				{this.state.start && <h5>{JSON.stringify(this.state.start)}</h5>}
 				<div>
 					<div>
 						<button onClick={this.exportHtml}>Export HTML</button>
@@ -63,14 +63,32 @@ class Users extends Component {
 	};
 
 	save = () => {
-		this.editor.saveDesign(design => {
-			sample = design;
-			sample.id = "1234566789";
-			this.setState({ start: sample });
-			console.log("saveDesign:", sample);
-			//this.setState({start:design})
-			//alert("Design JSON has been logged in your developer console.")
+		this.editor.exportHtml(data => {
+			const { design, html } = data;
+			// console.log("exportHtml", html);
+			// let text = JSON.stringify(html);
+			let name = "Sample 15";
+			let text = base64.encode(html);
+			console.log("text:", text)
+			axios.post('http://localhost:4000/api/templates/addTemplate', { name, text })
+				.then((response) => {
+					console.log("response.data:", response.data)
+					if (response.data.code == 200) {
+						console.log("success:", response.data)
+					}
+				}).catch((error) => {
+					console.log("error:", error.message)
+				})
 		});
+
+		// this.editor.saveDesign(design => {
+		// 	sample = design;
+		// 	sample.id = "1234566789";
+		// 	this.setState({ start: sample });
+		// 	console.log("saveDesign:", sample);
+		// 	//this.setState({start:design})
+		// 	//alert("Design JSON has been logged in your developer console.")
+		// });
 	};
 
 	exportHtml = () => {

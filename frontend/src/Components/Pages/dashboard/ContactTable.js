@@ -147,13 +147,13 @@ const useToolbarStyles = makeStyles(theme => ({
 	highlight:
 		theme.palette.type === 'light'
 			? {
-					color: theme.palette.secondary.main,
-					backgroundColor: lighten(theme.palette.secondary.light, 0.85)
-			  }
+				color: theme.palette.secondary.main,
+				backgroundColor: lighten(theme.palette.secondary.light, 0.85)
+			}
 			: {
-					color: theme.palette.text.primary,
-					backgroundColor: theme.palette.secondary.dark
-			  },
+				color: theme.palette.text.primary,
+				backgroundColor: theme.palette.secondary.dark
+			},
 	spacer: {
 		flex: '1 1 100%'
 	},
@@ -181,10 +181,10 @@ const EnhancedTableToolbar = props => {
 						{numSelected} selected
 					</Typography>
 				) : (
-					<Typography variant='h6' id='tableTitle'>
-						Contacts/Query
+						<Typography variant='h6' id='tableTitle'>
+							Contacts/Query
 					</Typography>
-				)}
+					)}
 			</div>
 			<div className={classes.spacer} />
 			<div className={classes.actions}>
@@ -195,12 +195,12 @@ const EnhancedTableToolbar = props => {
 						</IconButton>
 					</Tooltip>
 				) : (
-					<Tooltip title='Refresh'>
-						<IconButton aria-label='filter list' onClick={onRefreshClicked}>
-							<RefreshIcon />
-						</IconButton>
-					</Tooltip>
-				)}
+						<Tooltip title='Refresh'>
+							<IconButton aria-label='filter list' onClick={onRefreshClicked}>
+								<RefreshIcon />
+							</IconButton>
+						</Tooltip>
+					)}
 			</div>
 		</Toolbar>
 	);
@@ -405,24 +405,21 @@ export default function ContactTable() {
 				control={<Switch checked={dense} onChange={handleChangeDense} />}
 				label='Dense padding'
 			/> */}
-			
-		 <div class="column1">
-		 <div class="card">
-			<div class="card-header">
-   				 Campaign Header
-  			</div>
-  			<div class="card-body">
-    		<h5 class="card-title">Campaign Details</h5>
-    		<p class="card-text">Features cards</p>
-    		<a class="et_pb_button btn btn-primary" title="Relevant Title" href="#">Create </a>
-			<a class="et_pb_button btn btn-primary" title="Relevant Title" href="#">Edit</a>
-			<a class="et_pb_button btn btn-primary" title="Relevant Title" href="#">Info</a>
- 			 </div>
-			</div>
-			</div> 
 
-		
-			
+			<div class="column1">
+				<div class="card">
+					<div class="card-header">
+						Campaign Header
+  					</div>
+					<div class="card-body">
+						<h5 class="card-title">Campaign Details</h5>
+						<p class="card-text">Features cards</p>
+						<a class="et_pb_button btn btn-primary" title="Relevant Title" href="#">Create </a>
+						<a class="et_pb_button btn btn-primary" title="Relevant Title" href="#">Edit</a>
+						<a class="et_pb_button btn btn-primary" title="Relevant Title" href="#">Info</a>
+					</div>
+				</div>
+			</div>
 		</div>
 	);
 }
