@@ -1,75 +1,72 @@
-import React, { Component } from 'react';
-// import logo from './logo.svg';
 import './App.css';
-import sample from "./sample.json";
-import initial from "./initial.json";
-import EmailEditor from 'react-email-editor';
+import React, { Fragment, useState, useContext } from 'react';
+import { TopMenu, Footer } from './Components/Layouts';
+import Maincontent from './Components/Maincontent';
+import AuthContext from './context/auth/AuthState';
+import AlertContext from './context/alert/AlertState';
+import EventContext from './context/event/eventState';
 
-class App extends Component {
-  constructor() {
-    super();
-    this.state = {
-      name: "React",
-      start: ""
-    };
-  }
+import { Hidden, Fab, Icon } from '@material-ui/core';
 
-  render() {
-    return (
-      <div>
-        <div>
-          <div>
-            <button onClick={this.exportHtml}>Export HTML</button>
-            &nbsp;
-            <button onClick={this.saveDesign}>Save Design</button>
-            &nbsp;
-            <button onClick={this.loadInitial}>Load Initial Design</button>
-            &nbsp;
-            <button onClick={this.load}>Load Design</button>
-            &nbsp;
-            <button onClick={this.save}>Save</button>
-            &nbsp;
-            <button onClick={this.download}>Download</button>
-          </div>
-          <EmailEditor ref={editor => (this.editor = editor)} />
-        </div>
-      </div>
-    );
-  }
+const sectionStyle = {
+	backgroundImage:
+		'url()',
+	backgroundRepeat: 'repeat',
+	backgroundPositionX: 'center',
+	position: 'absolute',
+	width: '100%',
+	top: '0'
+};
 
-  loadInitial = () => {
-    this.editor.loadDesign(initial);
-  };
+const fabPosition = {
+	bottom: '10vh',
+	position: 'fixed',
+	margin: '1em',
+	right: '8vw',
+	opacity: '0.9'
+};
 
-  load = () => {
-    this.editor.loadDesign(sample);
-  };
+function App() {
+	const [panel, setPanel] = useState(false);
+	//const [] = useState({ mode: 'light' });
 
-  save = () => {
-    this.editor.saveDesign(design => {
-      sample = design;
-      sample.id = "1234566789";
-      this.setState({ start: sample });
-      console.log("saveDesign:", sample);
-      //this.setState({start:design})
-      //alert("Design JSON has been logged in your developer console.")
-    });
-  };
+	function toggleButton() {
+		if (!panel) setPanel(true);
+		else setPanel(false);
 
-  exportHtml = () => {
-    this.editor.exportHtml(data => {
-      const { design, html } = data;
-      console.log("exportHtml", html);
-    });
-  };
+		if (panel === false) {
+			document.getElementById('ToggleButton').style.background = '#161625';
+		}
+	}
 
-  saveDesign = () => {
-    this.editor.saveDesign(design => {
-      console.log("saveDesign", design);
-      this.setState({ start: design });
-      alert("Design JSON has been logged in your developer console.");
-    });
-  };
+	return (
+		<div className='dark-mode'>
+			<div className='App ' style={sectionStyle}>
+				<AuthContext>
+					<EventContext>
+						<AlertContext>
+							<TopMenu toggleButton={toggleButton} />
+							<Maincontent />
+							<br />
+							<br />
+							<br />
+							{/* <Footer /> */}
+						</AlertContext>
+					</EventContext>
+				</AuthContext>
+				<Hidden smUp>
+					<div style={fabPosition}>
+						<Fab color='secondary' onClick={() => window.scrollTo(0, 0)}>
+							<Icon
+								fontSize='inherit'
+								style={{ height: 'auto' }}
+								className='fas fa-chevron-up'
+							/>
+						</Fab>
+					</div>
+				</Hidden>
+			</div>
+		</div>
+	);
 }
-
 export default App;
